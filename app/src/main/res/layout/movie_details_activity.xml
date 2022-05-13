@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="12dp"
+    android:paddingTop="12dp"
+    android:paddingRight="12dp"
+    tools:context=".presentation.details.MovieDetailsActivity">
+
+    <TextView
+        android:id="@+id/textMovieDetailsPosterPath"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Poster Path"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/textMovieDetailsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The return of those who didn't go"
+        android:textColor="@color/gray"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Genres : "
+            android:textColor="@color/gray"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textMovieDetailsGenre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Genre"
+            android:textColor="@color/gray" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/textMovieDetailsOverview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:text="Lorem ipsum dolor sit amet. Sed galisum omnis et modi nostrum qui corrupti esse ea molestiae molestiae et enim nihil sed autem perspiciatis quo quod accusantium. Et aliquam eligendi ut unde soluta rem incidunt dolor aut dolorum sunt.
+
+Et molestiae molestiae eos consectetur neque et modi enim id doloribus sint in mollitia temporibus. Quo facilis praesentium sed natus omnis sed dolorum quae et iusto dicta.
+
+"
+        android:textColor="@color/gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Release Date : "
+            android:textColor="@color/gray"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textMovieDetailsReleaseDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2022-05-13"
+            android:textColor="@color/gray" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Original Language : "
+            android:textColor="@color/gray"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textMovieDetailsOriginalLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="en"
+            android:textColor="@color/gray" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
