@@ -1,4 +1,4 @@
-package com.nathan.themoviedatabase.data.main
+package com.nathan.themoviedatabase.presentation.main.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

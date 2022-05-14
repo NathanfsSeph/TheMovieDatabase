@@ -1,4 +1,4 @@
-package com.nathan.themoviedatabase.presentation.movies
+package com.nathan.themoviedatabase.presentation.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
