@@ -14,7 +14,21 @@
             android:id="@+id/searchToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/bottom_nav_selected_item" />
+            android:background="@color/bottom_nav_selected_item">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchSearchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:queryHint="@string/movies_search"
+                app:closeIcon="@drawable/ic_close"
+                app:searchIcon="@drawable/ic_search"
+                app:searchHintIcon="@drawable/ic_search"
+                app:iconifiedByDefault="false"/>
+
+
+
+        </com.google.android.material.appbar.MaterialToolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 

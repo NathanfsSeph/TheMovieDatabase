@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import com.nathan.themoviedatabase.R
 import com.nathan.themoviedatabase.data.model.Movie
@@ -13,6 +16,7 @@ import com.nathan.themoviedatabase.presentation.main.adapter.MoviesAdapter
 import com.nathan.themoviedatabase.presentation.main.adapter.OnMovieListener
 import kotlinx.android.synthetic.main.fragment_search.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+
 
 class SearchFragment : Fragment(), OnMovieListener {
 
@@ -41,6 +45,25 @@ class SearchFragment : Fragment(), OnMovieListener {
     }
 
     private fun setupViews() {
+        val searchEditText: EditText =
+            searchSearchView.findViewById(androidx.appcompat.R.id.search_src_text)
+        searchEditText.setTextColor(resources.getColor(R.color.white))
+        searchEditText.setHintTextColor(resources.getColor(R.color.white))
+        searchSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                if(query.isNotEmpty()){
+                    viewModel.getSpecificMovie(query)
+                }
+
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+
+                return false
+            }
+        })
+
         with(foundMoviesRecyclerView) {
             adapter = this@SearchFragment.adapter
         }

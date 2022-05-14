@@ -1,6 +1,7 @@
 package com.nathan.themoviedatabase.presentation.main
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -58,9 +59,12 @@ class MainViewModel : ViewModel() {
     }
 
     fun getSpecificMovie(movieName : String){
-        val uri: Uri = Uri.parse(movieName)
-        APIService.service.getSpecificMovie(uri.toString()).enqueue(object: Callback<MovieBodyResponse>{
+//        val uri: Uri = Uri.parse(movieName)
+        val uri = "The Batman"
+        APIService.service.getSpecificMovie(uri).enqueue(object: Callback<MovieBodyResponse>{
+
             override fun onResponse( call: Call<MovieBodyResponse>, response: Response<MovieBodyResponse>) {
+
                 if (response.isSuccessful){
                     val movies : MutableList<Movie> = mutableListOf()
 
@@ -78,6 +82,8 @@ class MainViewModel : ViewModel() {
                         }
                     }
 
+                    Log.i("Alow",movies.toString())
+
                     _searchScreenState.value = _searchScreenState.value?.copy(
                         foundMovies = movies
                     )
@@ -85,7 +91,7 @@ class MainViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<MovieBodyResponse>, t: Throwable) {
-
+                Log.i("tag",uri)
             }
         })
 

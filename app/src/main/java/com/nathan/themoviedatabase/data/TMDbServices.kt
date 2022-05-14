@@ -13,9 +13,9 @@ interface TMDbServices {
 
     // https://developers.themoviedb.org/3/search/search-movies
     // movie?api_key=f321a808e68611f41312aa8408531476&query=Jack%20Reacher
-    @GET("movie/now_playing?api_key=f321a808e68611f41312aa8408531476")
+    @GET("search/movie/?api_key=f321a808e68611f41312aa8408531476")
     fun getSpecificMovie(
-        @Query("query") query : String = "Jack%20Reacher"
+        @Query("query") query : String
     ): Call<MovieBodyResponse>
 
 
