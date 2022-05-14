@@ -12,7 +12,7 @@
         android:id="@+id/imageViewPosterPath"
         android:layout_width="250dp"
         android:layout_height="375dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="40dp"
         android:radius="50dp"
         android:scaleType="matrix"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,6 +37,7 @@
         android:layout_marginTop="4dp"
         android:text="Release Date : "
         android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textViewGenre" />
 
