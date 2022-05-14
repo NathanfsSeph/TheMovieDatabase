@@ -1,51 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingLeft="12dp"
-    android:paddingTop="12dp"
-    android:paddingRight="12dp"
-    tools:context=".presentation.details.MovieDetailsActivity">
+    tools:context=".presentation.details.MovieDetailsActivity"
+    android:padding="15dp">
+
+    <ImageView
+        android:id="@+id/imageMovieDetailsPosterPath"
+        android:layout_width="0dp"
+        android:layout_height="350dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/textMovieDetailsPosterPath"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Poster Path"
-        android:textColor="@color/black" />
+        android:text=" asdasdasdasd "
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/imageMovieDetailsPosterPath"
+        app:layout_constraintTop_toBottomOf="@+id/imageMovieDetailsPosterPath" />
+
 
     <TextView
         android:id="@+id/textMovieDetailsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:text="The return of those who didn't go"
         android:textColor="@color/gray"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/imageMovieDetailsPosterPath"
+        app:layout_constraintTop_toBottomOf="@+id/imageMovieDetailsPosterPath" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:text="Genres : "
+        android:textColor="@color/gray"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textMovieDetailsOverview"
+        app:layout_constraintTop_toBottomOf="@+id/textMovieDetailsTitle" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Genres : "
-            android:textColor="@color/gray"
-            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textMovieDetailsGenre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Genre"
-            android:textColor="@color/gray" />
-
-    </LinearLayout>
-
+    <TextView
+        android:id="@+id/textMovieDetailsGenre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Genre"
+        android:textColor="@color/gray"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textMovieDetailsTitle" />
 
     <TextView
         android:id="@+id/textMovieDetailsOverview"
@@ -57,50 +69,51 @@
 Et molestiae molestiae eos consectetur neque et modi enim id doloribus sint in mollitia temporibus. Quo facilis praesentium sed natus omnis sed dolorum quae et iusto dicta.
 
 "
-        android:textColor="@color/gray" />
+        android:textColor="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageMovieDetailsPosterPath"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:text="Release Date : "
+        android:textColor="@color/gray"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textMovieDetailsReleaseDate"
+        app:layout_constraintStart_toStartOf="@+id/textMovieDetailsOverview" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Release Date : "
-            android:textColor="@color/gray"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textMovieDetailsReleaseDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2022-05-13"
-            android:textColor="@color/gray" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textMovieDetailsReleaseDate"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Original Language : "
-            android:textColor="@color/gray"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textMovieDetailsOriginalLanguage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="en"
-            android:textColor="@color/gray" />
+        android:text="2022-05-13"
+        android:textColor="@color/gray"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textMovieDetailsOverview" />
 
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Original Language : "
+        android:textColor="@color/gray"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textMovieDetailsOriginalLanguage"
+        app:layout_constraintStart_toStartOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textMovieDetailsOriginalLanguage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:text="en"
+        android:textColor="@color/gray"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textMovieDetailsReleaseDate" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

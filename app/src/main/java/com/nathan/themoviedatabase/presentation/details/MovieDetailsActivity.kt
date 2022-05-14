@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bumptech.glide.Glide
 import com.nathan.themoviedatabase.R
 import com.nathan.themoviedatabase.data.model.Movie
 import kotlinx.android.synthetic.main.movie_details_activity.*
@@ -14,7 +15,9 @@ class MovieDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.movie_details_activity)
 
-        textMovieDetailsPosterPath.text = intent.getStringExtra(EXTRA_POSTER_PATH)
+        Glide.with(imageMovieDetailsPosterPath).load("https://image.tmdb.org/t/p/w500${intent.getStringExtra(EXTRA_POSTER_PATH)}").into(imageMovieDetailsPosterPath)
+
+        textMovieDetailsPosterPath.text = " "
         textMovieDetailsOverview.text = intent.getStringExtra(EXTRA_OVERVIEW)
         textMovieDetailsReleaseDate.text = intent.getStringExtra(EXTRA_RELEASE_DATE)
         textMovieDetailsGenre.text = intent.getStringExtra(EXTRA_GENRE_IDS)

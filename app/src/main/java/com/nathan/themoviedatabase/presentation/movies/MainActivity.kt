@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.moviesLiveData.observe(this, Observer{
             it?.let { movies ->
                 with(recyclerView) {
-                    layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)
+                    layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.HORIZONTAL, false)
                     setHasFixedSize(true)
                     adapter = MoviesAdapter(movies) {
                         val intent = MovieDetailsActivity.getStartIntent(this@MainActivity, it)
