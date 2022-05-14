@@ -16,9 +16,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        toolbar.title = getString(R.string.movies_title)
-        setSupportActionBar(toolbar)
-
         viewModel.getMovies()
 
         setupWithNavController(
