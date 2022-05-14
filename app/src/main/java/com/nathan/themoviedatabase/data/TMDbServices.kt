@@ -16,7 +16,7 @@ interface TMDbServices {
     @GET("movie/now_playing?api_key=f321a808e68611f41312aa8408531476")
     fun getSpecificMovie(
         @Query("query") query : String = "Jack%20Reacher"
-    ): Call<MovieResultsResponse>
+    ): Call<MovieBodyResponse>
 
 
 }

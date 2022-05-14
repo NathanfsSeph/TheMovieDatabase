@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.nathan.themoviedatabase.R
 import com.nathan.themoviedatabase.data.model.Movie
 import com.nathan.themoviedatabase.presentation.details.MovieDetailsActivity
-import com.nathan.themoviedatabase.presentation.main.MoviesViewModel
+import com.nathan.themoviedatabase.presentation.main.MainViewModel
 import com.nathan.themoviedatabase.presentation.main.adapter.MoviesAdapter
 import com.nathan.themoviedatabase.presentation.main.adapter.OnMovieListener
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -16,7 +16,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class MainFragment : Fragment(), OnMovieListener {
 
-    private val viewModel: MoviesViewModel by sharedViewModel()
+    private val viewModel: MainViewModel by sharedViewModel()
     private val adapter: MoviesAdapter by lazy { MoviesAdapter(this) }
 
     override fun onCreateView(
@@ -33,9 +33,9 @@ class MainFragment : Fragment(), OnMovieListener {
     }
 
     private fun setupObservers() {
-        viewModel.moviesLiveData.observe(viewLifecycleOwner) {
-            it?.let { movies ->
-                adapter.updateDataSet(movies)
+        viewModel.mainScreenState.observe(viewLifecycleOwner) {
+            it?.let {
+                adapter.updateDataSet(it.movies)
             }
         }
     }
