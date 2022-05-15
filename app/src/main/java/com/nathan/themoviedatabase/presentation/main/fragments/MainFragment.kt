@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.nathan.themoviedatabase.R
 import com.nathan.themoviedatabase.data.model.Movie
 import com.nathan.themoviedatabase.presentation.details.MovieDetailsActivity
@@ -44,6 +46,14 @@ class MainFragment : Fragment(), OnMovieListener {
     private fun setupViews() {
         with(recyclerView) {
             adapter = this@MainFragment.adapter
+            addOnScrollListener(object : RecyclerView.OnScrollListener(){
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+                    if(!recyclerView.canScrollHorizontally(1)){
+                        viewModel.incrementMoviesPage()
+                    }
+                }
+            })
         }
     }
 

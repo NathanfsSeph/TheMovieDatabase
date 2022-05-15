@@ -10,6 +10,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.nathan.themoviedatabase.R
 import com.nathan.themoviedatabase.data.model.Movie
 import com.nathan.themoviedatabase.presentation.details.MovieDetailsActivity
@@ -71,6 +72,14 @@ class SearchFragment : Fragment(), OnMovieListener {
 
         with(foundMoviesRecyclerView) {
             adapter = this@SearchFragment.adapter
+            addOnScrollListener(object : RecyclerView.OnScrollListener(){
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+                    if(!recyclerView.canScrollHorizontally(1)){
+                        viewModel.incrementSearchedMoviesPage()
+                    }
+                }
+            })
         }
     }
 

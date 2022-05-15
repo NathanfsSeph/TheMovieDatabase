@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 import com.nathan.themoviedatabase.commons.readAssetsFile
 import com.nathan.themoviedatabase.data.APIService
-import com.nathan.themoviedatabase.data.model.Genre
 import com.nathan.themoviedatabase.data.model.Genres
 import com.nathan.themoviedatabase.data.model.Movie
 import com.nathan.themoviedatabase.data.response.MovieBodyResponse
@@ -27,6 +26,11 @@ class MainViewModel(
 
     private var allMoviesGenres : Genres
 
+    private var homePage : Int = 0
+    private var searchPage : Int = 0
+
+    private lateinit var movieNameSearched : String
+
     init {
         _mainScreenState.value = MainScreenState()
         _searchScreenState.value = SearchScreenState()
@@ -37,7 +41,8 @@ class MainViewModel(
     }
 
     fun getMovies() {
-        APIService.service.getMovies().enqueue(object : Callback<MovieBodyResponse> {
+        homePage = 1
+        APIService.service.getMovies(page = homePage).enqueue(object : Callback<MovieBodyResponse> {
             override fun onResponse(
                 call: Call<MovieBodyResponse>,
                 response: Response<MovieBodyResponse>
@@ -89,8 +94,9 @@ class MainViewModel(
     }
 
     fun getSpecificMovie(movieName: String) {
-
-        APIService.service.getSpecificMovie(movieName)
+        searchPage = 1
+        movieNameSearched = movieName
+        APIService.service.getSpecificMovie(movieNameSearched, page = searchPage)
             .enqueue(object : Callback<MovieBodyResponse> {
 
                 override fun onResponse(
@@ -120,6 +126,92 @@ class MainViewModel(
                             isDefaultStateVisible = false,
                             isEmptyStateVisible = movies.isEmpty(),
                             isNonEmptyStateVisible = movies.isNotEmpty()
+                        )
+                    }
+                }
+
+                override fun onFailure(call: Call<MovieBodyResponse>, t: Throwable) {
+
+                }
+            })
+
+    }
+
+    fun incrementMoviesPage() {
+        homePage++
+        APIService.service.getMovies(page = homePage).enqueue(object : Callback<MovieBodyResponse> {
+            override fun onResponse(
+                call: Call<MovieBodyResponse>,
+                response: Response<MovieBodyResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val movies: MutableList<Movie> = mutableListOf()
+
+                    response.body()?.let { movieBodyResponse ->
+                        for (result in movieBodyResponse.results) {
+                            val movie = Movie(
+                                poster_path = result.poster_path,
+                                overview = result.overview,
+                                release_date = result.release_date,
+                                genres = getMovieGenres(result.genre_ids),
+                                original_language = result.original_language,
+                                title = result.title
+                            )
+                            movies.add(movie)
+                        }
+                    }
+
+                    val newMovies = _mainScreenState.value?.movies?.toMutableList() ?: mutableListOf()
+                    newMovies.addAll(movies)
+
+                    _mainScreenState.value = mainScreenState.value?.copy(
+                        movies = newMovies
+                    )
+                }
+            }
+
+            override fun onFailure(call: Call<MovieBodyResponse>, t: Throwable) {
+
+            }
+
+        })
+    }
+
+    fun incrementSearchedMoviesPage() {
+        searchPage++
+        APIService.service.getSpecificMovie(movieNameSearched, page = searchPage)
+            .enqueue(object : Callback<MovieBodyResponse> {
+
+                override fun onResponse(
+                    call: Call<MovieBodyResponse>,
+                    response: Response<MovieBodyResponse>
+                ) {
+
+                    if (response.isSuccessful) {
+                        val movies: MutableList<Movie> = mutableListOf()
+
+                        response.body()?.let { movieBodyResponse ->
+                            for (result in movieBodyResponse.results) {
+                                val movie = Movie(
+                                    poster_path = result.poster_path,
+                                    overview = result.overview,
+                                    release_date = result.release_date,
+                                    genres = getMovieGenres(result.genre_ids),
+                                    original_language = result.original_language,
+                                    title = result.title
+                                )
+                                movies.add(movie)
+                            }
+                        }
+
+                        val newMovies = _searchScreenState.value?.foundMovies?.toMutableList() ?: mutableListOf()
+                        newMovies.addAll(movies)
+
+                        _searchScreenState.value = _searchScreenState.value?.copy(
+                            foundMovies = newMovies,
+                            isDefaultStateVisible = false,
+                            isEmptyStateVisible = newMovies.isEmpty(),
+                            isNonEmptyStateVisible = newMovies.isNotEmpty()
                         )
                     }
                 }
