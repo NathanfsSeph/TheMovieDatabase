@@ -45,7 +45,7 @@ class MoviesAdapter(
 
             //poster_path.text = movie.poster_path
             release_date.text = movie.release_date
-            genre_ids.text = movie.genre_ids.toString()
+            genre_ids.text = movie.genres.toString()
             title.text = movie.title
 
             itemView.setOnClickListener{

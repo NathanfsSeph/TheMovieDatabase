@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.nathan.themoviedatabase.R
 import com.nathan.themoviedatabase.data.model.Movie
 import com.nathan.themoviedatabase.presentation.details.MovieDetailsActivity
@@ -70,8 +71,8 @@ class SearchFragment : Fragment(), OnMovieListener {
     }
 
     override fun onMovieClicked(movie: Movie) {
-        val intent = MovieDetailsActivity.getStartIntent(requireContext(), movie)
-        startActivity(intent)
+        val action = SearchFragmentDirections.actionSearchFragmentToMovieDetailsActivity(movie)
+        findNavController().navigate(action)
     }
 
 }

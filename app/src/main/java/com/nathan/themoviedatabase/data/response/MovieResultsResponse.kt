@@ -15,13 +15,4 @@ data class MovieResultsResponse (
     val original_language : String,
     @SerializedName("title")
     val title : String
-    ) {
-    /*fun getMovieModel() = Movie (
-        title = this.title,
-        poster_path = this.poster_path,
-        original_language = this.original_language,
-        overview = this.overview,
-        release_date = this.release_date,
-        genre_ids = this.genre_ids // listOf("Tenho", "que", "ver", "como", "resolver")
-    )*/
-}
+    )

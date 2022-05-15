@@ -11,19 +11,35 @@
         android:name="com.nathan.themoviedatabase.presentation.main.fragments.MainFragment"
         android:label="main_fragment"
         tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_movieDetailsActivity"
+            app:destination="@id/movieDetailsActivity" />
     </fragment>
 
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.nathan.themoviedatabase.presentation.main.fragments.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_movieDetailsActivity"
+            app:destination="@id/movieDetailsActivity" />
+    </fragment>
 
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="com.nathan.themoviedatabase.presentation.main.fragments.FavoritesFragment"
         android:label="fragment_favorites"
         tools:layout="@layout/fragment_favorites" />
+    <activity
+        android:id="@+id/movieDetailsActivity"
+        android:name="com.nathan.themoviedatabase.presentation.details.MovieDetailsActivity"
+        android:label="activity_movie_details"
+        tools:layout="@layout/activity_movie_details" >
+        <argument
+            android:name="movie"
+            app:argType="com.nathan.themoviedatabase.data.model.Movie" />
+    </activity>
 
 
 </navigation>

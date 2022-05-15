@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.nathan.themoviedatabase.R
 import com.nathan.themoviedatabase.data.model.Movie
 import com.nathan.themoviedatabase.presentation.details.MovieDetailsActivity
@@ -47,8 +48,8 @@ class MainFragment : Fragment(), OnMovieListener {
     }
 
     override fun onMovieClicked(movie: Movie) {
-        val intent = MovieDetailsActivity.getStartIntent(requireContext(), movie)
-        startActivity(intent)
+        val action = MainFragmentDirections.actionMainFragmentToMovieDetailsActivity(movie)
+        findNavController().navigate(action)
     }
 
 }
