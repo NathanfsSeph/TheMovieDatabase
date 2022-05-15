@@ -41,40 +41,43 @@ class MainViewModel(
     }
 
     fun getMovies() {
-        homePage = 1
-        APIService.service.getMovies(page = homePage).enqueue(object : Callback<MovieBodyResponse> {
-            override fun onResponse(
-                call: Call<MovieBodyResponse>,
-                response: Response<MovieBodyResponse>
-            ) {
-                if (response.isSuccessful) {
-                    val movies: MutableList<Movie> = mutableListOf()
+        if(mainScreenState.value?.movies?.isEmpty() == true) {
+            homePage = 1
+            APIService.service.getMovies(page = homePage)
+                .enqueue(object : Callback<MovieBodyResponse> {
+                    override fun onResponse(
+                        call: Call<MovieBodyResponse>,
+                        response: Response<MovieBodyResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            val movies: MutableList<Movie> = mutableListOf()
 
-                    response.body()?.let { movieBodyResponse ->
-                        for (result in movieBodyResponse.results) {
-                            val movie = Movie(
-                                poster_path = result.poster_path,
-                                overview = result.overview,
-                                release_date = result.release_date,
-                                genres = getMovieGenres(result.genre_ids),
-                                original_language = result.original_language,
-                                title = result.title
+                            response.body()?.let { movieBodyResponse ->
+                                for (result in movieBodyResponse.results) {
+                                    val movie = Movie(
+                                        poster_path = result.poster_path,
+                                        overview = result.overview,
+                                        release_date = result.release_date,
+                                        genres = getMovieGenres(result.genre_ids),
+                                        original_language = result.original_language,
+                                        title = result.title
+                                    )
+                                    movies.add(movie)
+                                }
+                            }
+
+                            _mainScreenState.value = mainScreenState.value?.copy(
+                                movies = movies
                             )
-                            movies.add(movie)
                         }
                     }
 
-                    _mainScreenState.value = mainScreenState.value?.copy(
-                        movies = movies
-                    )
-                }
-            }
+                    override fun onFailure(call: Call<MovieBodyResponse>, t: Throwable) {
 
-            override fun onFailure(call: Call<MovieBodyResponse>, t: Throwable) {
+                    }
 
-            }
-
-        })
+                })
+        }
     }
 
     private fun getMovieGenres(genresIds: List<Int>): List<String> {
