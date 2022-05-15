@@ -116,7 +116,10 @@ class MainViewModel(
                         }
 
                         _searchScreenState.value = _searchScreenState.value?.copy(
-                            foundMovies = movies
+                            foundMovies = movies,
+                            isDefaultStateVisible = false,
+                            isEmptyStateVisible = movies.isEmpty(),
+                            isNonEmptyStateVisible = movies.isNotEmpty()
                         )
                     }
                 }

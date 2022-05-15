@@ -8,5 +8,7 @@ data class MainScreenState(
 
 data class SearchScreenState(
     val foundMovies: List<Movie> = listOf(),
-    val isEmptyStateVisible : Boolean = true
+    val isDefaultStateVisible : Boolean = true,
+    val isEmptyStateVisible : Boolean = false,
+    val isNonEmptyStateVisible : Boolean = false
 )

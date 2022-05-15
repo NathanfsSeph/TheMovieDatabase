@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.nathan.themoviedatabase.R
@@ -40,6 +41,9 @@ class SearchFragment : Fragment(), OnMovieListener {
     private fun setupObservers() {
         viewModel.searchScreenState.observe(viewLifecycleOwner) {
             it?.let {
+                defaultState.isVisible = it.isDefaultStateVisible
+                emptyState.isVisible = it.isEmptyStateVisible
+                nonEmptyState.isVisible = it.isNonEmptyStateVisible
                 adapter.updateDataSet(it.foundMovies)
             }
         }

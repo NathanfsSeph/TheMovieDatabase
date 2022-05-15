@@ -4,5 +4,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="confirm">Confirm</string>
     <string name="no_movies_found">No movies found</string>
+    <string name="search_on_bar">Search in the bar above</string>
     <string name="movies_search">Type the book you want to search</string>
 </resources>
